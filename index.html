@@ -2,60 +2,79 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Validación Oficial - Permiso Provisional</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Plataforma Digital de Validación - Permiso Provisional</title>
     <style>
         :root {
-            --primary-color: #7A1C29; /* Guinda institucional */
-            --bg-color: #EFEFEF;
-            --card-bg: #FFFFFF;
+            --primary: #7A1C29;
+            --primary-dark: #5C131D;
+            --success: #1E824C;
+            --danger: #D63031;
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
         }
 
+        * { box-sizing: border-box; }
+
         body { 
-            font-family: 'Arial', sans-serif; 
-            background-color: var(--bg-color); 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+            background: var(--bg-gradient); 
             margin: 0; 
-            padding: 15px; 
-            color: #222;
+            padding: 20px; 
+            color: #2c3e50;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .container { 
-            max-width: 650px; 
-            margin: auto; 
-            background: var(--card-bg); 
-            padding: 20px; 
-            border-radius: 6px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15); 
+            width: 100%;
+            max-width: 580px; 
+            background: #ffffff; 
+            padding: 30px; 
+            border-radius: 16px; 
+            box-shadow: var(--card-shadow); 
             position: relative;
             overflow: hidden;
-            border-top: 5px solid var(--primary-color);
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            border-top: 6px solid var(--primary);
         }
 
-        /* Marca de agua de fondo transparente simulando el documento */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Marca de agua de fondo elegante */
         .container::before {
             content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" opacity="0.04"><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="28" font-weight="bold" transform="rotate(-30, 150, 150)" fill="%237A1C29">TRÁNSITO MUNICIPAL</text></svg>');
-            background-repeat: repeat;
+            background-image: radial-gradient(var(--primary) 0.75px, transparent 0.75px);
+            background-size: 16px 16px;
+            opacity: 0.03;
             pointer-events: none;
-            z-index: 0;
         }
 
-        .header-logos {
+        .header-institucional {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 1;
+            justify-content: space-between;
+            border-bottom: 2px solid #eaeaea;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
         }
 
-        .header-logos img {
-            height: 55px;
-            object-fit: contain;
+        .logo-badge {
+            width: 48px;
+            height: 48px;
+            background: rgba(122, 28, 41, 0.08);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
         }
 
         .header-titles {
@@ -66,220 +85,246 @@
 
         .header-titles h4 {
             margin: 0;
-            font-size: 11px;
-            color: #444;
-            font-weight: bold;
+            font-size: 10px;
+            letter-spacing: 1px;
+            color: #7f8c8d;
+            font-weight: 700;
             text-transform: uppercase;
         }
 
-        .header-titles h3 {
-            margin: 3px 0;
-            font-size: 12px;
-            color: #000;
-            font-weight: bold;
+        .header-titles h2 {
+            margin: 4px 0 0 0;
+            font-size: 13px;
+            color: #2c3e50;
+            font-weight: 800;
         }
 
-        .main-title {
+        .document-title-box {
             text-align: center;
-            color: var(--primary-color);
-            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .document-title-box h1 {
+            color: var(--primary);
+            font-size: 17px;
             font-weight: 900;
-            margin: 10px 0 2px 0;
-            position: relative;
-            z-index: 1;
+            margin: 0 0 4px 0;
             letter-spacing: 0.5px;
         }
 
-        .sub-title {
-            text-align: center;
-            color: #8C7B5C;
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 1;
-            text-transform: uppercase;
-        }
-
-        .search-box {
-            background: #F8F9FA;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .search-box label {
-            display: block;
+        .document-title-box span {
+            color: #d35400;
             font-size: 12px;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #333;
+            font-weight: 700;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            background: rgba(211, 84, 0, 0.08);
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
         }
 
-        .input-group {
+        /* Buscador Avanzado */
+        .search-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .search-card label {
+            display: block;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-row {
             display: flex;
-            gap: 8px;
+            gap: 10px;
         }
 
         input { 
             flex: 1; 
-            padding: 10px; 
+            padding: 12px 15px; 
             box-sizing: border-box; 
             text-transform: uppercase; 
-            border: 1px solid #ccc; 
-            border-radius: 4px; 
-            font-size: 14px; 
-            font-weight: bold;
+            border: 2px solid #cbd5e1; 
+            border-radius: 8px; 
+            font-size: 15px; 
+            font-weight: 700;
+            color: #1e293b;
+            transition: all 0.2s ease;
+            background: #fff;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(122, 28, 41, 0.1);
         }
         
         button { 
-            background-color: var(--primary-color); 
+            background-color: var(--primary); 
             color: white; 
             border: none; 
-            padding: 10px 18px; 
+            padding: 0 22px; 
             cursor: pointer; 
             font-size: 13px; 
-            border-radius: 4px; 
-            font-weight: bold; 
+            border-radius: 8px; 
+            font-weight: 700; 
             text-transform: uppercase;
-        }
-        button:hover { background-color: #5C131D; }
-
-        .legal-notice {
-            font-size: 10px;
-            text-align: justify;
-            color: #555;
-            line-height: 1.3;
-            margin-bottom: 15px;
-            border-bottom: 1px dashed #ccc;
-            padding-bottom: 10px;
-            position: relative;
-            z-index: 1;
+            letter-spacing: 0.5px;
+            transition: background 0.2s, transform 0.1s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
+        button:hover { background-color: var(--primary-dark); }
+        button:active { transform: scale(0.98); }
+
+        /* Resultados Dinámicos con Animación */
         .result { 
-            margin-top: 15px; 
-            padding: 15px; 
-            border-radius: 6px; 
+            margin-top: 20px; 
+            padding: 20px; 
+            border-radius: 12px; 
             display: none; 
-            position: relative;
-            z-index: 1;
-            background: #fff;
+            animation: fadeIn 0.4s ease-out forwards;
         }
-        
-        .badge {
-            display: block;
-            padding: 8px;
-            border-radius: 4px;
-            font-weight: bold;
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.97); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 800;
             font-size: 13px;
-            margin-bottom: 12px;
-            text-align: center;
+            margin-bottom: 16px;
+            text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-        .badge-vigente { background-color: #2E7D32; color: white; border: 1px solid #1B5E20; }
-        .badge-expirado { background-color: #C62828; color: white; border: 1px solid #B71C1C; }
 
-        .vigente { border: 2px solid #4CAF50; box-shadow: 0 0 10px rgba(76,175,80,0.2); }
-        .expirado { border: 2px solid #F44336; box-shadow: 0 0 10px rgba(244,67,54,0.2); }
+        .status-vigente { background: #dcfce7; color: var(--success); border: 1px solid #86efac; }
+        .status-expirado { background: #fee2e2; color: var(--danger); border: 1px solid #fca5a5; }
 
         .details-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            font-size: 12px;
+            gap: 10px;
         }
 
-        .detail-item {
-            background: #F9F9F9;
-            padding: 8px;
-            border: 1px solid #E5E5E5;
-            border-radius: 4px;
+        .detail-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 10px 12px;
+            border-radius: 8px;
         }
 
-        .detail-item.full-width {
+        .detail-card.full {
             grid-column: span 2;
         }
 
-        .detail-item span {
+        .detail-card label {
             display: block;
-            color: #666;
-            font-size: 10px;
-            text-transform: uppercase;
-            font-weight: bold;
-            margin-bottom: 2px;
-        }
-
-        .detail-item strong {
-            color: #111;
-            font-size: 13px;
-        }
-
-        .footer-info {
-            margin-top: 15px;
             font-size: 9px;
+            color: #64748b;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 3px;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-card span {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1e293b;
+            word-break: break-word;
+        }
+
+        .legal-footer {
+            margin-top: 20px;
+            font-size: 10px;
             text-align: center;
-            color: #777;
-            border-top: 1px solid #ddd;
-            padding-top: 8px;
-            position: relative;
-            z-index: 1;
+            color: #94a3b8;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 12px;
+            line-height: 1.4;
+        }
+
+        /* Spinner de carga estilizado */
+        .loader-spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 0.8s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- Logotipos Oficiales -->
-    <div class="header-logos">
-        <!-- Logo Estado de Guerrero -->
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Escudo_de_Guerrero.svg/1200px-Escudo_de_Guerrero.svg.png" alt="Gobierno del Estado de Guerrero">
-        
+    <!-- Encabezado Institucional con Iconos Vectoriales -->
+    <div class="header-institucional">
+        <div class="logo-badge" title="Estado de Guerrero">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
         <div class="header-titles">
-            <h4>GOBIERNO DEL ESTADO DE GUERRERO</h4>
-            <h3>H. AYUNTAMIENTO MUNICIPAL CONSTITUCIONAL</h3>
-            <h4 style="color: var(--primary-color);">DIRECCIÓN DE TRÁNSITO Y VIALIDAD MUNICIPAL</h4>
+            <h4>Gobierno del Estado de Guerrero</h4>
+            <h2>H. Ayuntamiento Constitucional de Huitzuco</h2>
         </div>
-
-        <!-- Logo / Escudo del Municipio / Tránsito -->
-        <img src="https://www.direcciondetransitohuitzucodelosfigueroa.gob.mx/assets/images/logo.png" alt="Tránsito Municipal" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/8/8f/Boutique_symbol.png'">
+        <div class="logo-badge" title="Tránsito Municipal">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
     </div>
 
-    <div class="main-title">PERMISO PROVISIONAL PARA CIRCULAR</div>
-    <div class="sub-title">SIN PLACAS POR TRÁMITE DE EMPLACAMIENTO</div>
+    <div class="document-title-box">
+        <h1>VALIDACIÓN DE PERMISO PROVISIONAL</h1>
+        <span>Control Vehicular Oficial</span>
+    </div>
 
-    <!-- Buscador por Folio -->
-    <div class="search-box">
-        <label for="folioInput">Verificación de Folio Oficial:</label>
-        <div class="input-group">
+    <!-- Buscador -->
+    <div class="search-card">
+        <label for="folioInput">Ingrese o escanee el número de Folio:</label>
+        <div class="input-row">
             <input type="text" id="folioInput" placeholder="EJ. HTZ-BB2613">
-            <button onclick="consultarPermiso()">Consultar</button>
+            <button id="btnConsultar" onclick="consultarPermiso()">
+                <span>Buscar</span>
+            </button>
         </div>
     </div>
 
-    <!-- Texto Legal Extracto del Documento -->
-    <div class="legal-notice">
-        En ejercicio de la facultad que me confieren los preceptos 29 de la Ley de Tránsito y Vialidad del Estado de Guerrero, en correlación con el artículo 2A, 119 y 122 del Reglamento... Se otorga validez oficial en toda la República. La falsificación o uso indebido está penado por la ley.
-    </div>
-
-    <!-- Contenedor Dinámico de Resultados -->
+    <!-- Resultado Dinámico -->
     <div id="resultadoContainer" class="result"></div>
 
-    <div class="footer-info">
-        Palacio Municipal S/N, Col. Centro, C.P. 40130, Huitzuco de los Figueroa, Guerrero. | Tel. 733 116 8900<br>
-        Sistema de Validación Electrónica Oficial - Padrón Vehicular Municipal
+    <div class="legal-footer">
+        Dirección de Tránsito y Vialidad Municipal · Huitzuco de los Figueroa, Gro.<br>
+        Sistema de Autenticación Criptográfica y Padrón Electrónico en Línea.
     </div>
 </div>
 
 <script>
-    // ⚠️ REEMPLAZA ESTA URL CON TU ENLACE ACTUAL DE GOOGLE APPS SCRIPT (/exec)
+    // ⚠️ TU URL DE GOOGLE APPS SCRIPT
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxnCEqO-WMSIE1wnk2hL_HXiF2itDy3lNWJoWMd4cV1F-C-nzQ2Pca9FLqq6kJ6TuM5kw/exec";
 
-    // Si la URL se abre con parámetros ej: index.html?folio=HTZ-BB2613, realiza la búsqueda automáticamente
     window.onload = function() {
         const urlParams = new URLSearchParams(window.location.search);
         const folioParam = urlParams.get('folio');
@@ -292,15 +337,18 @@
     async function consultarPermiso() {
         const folio = document.getElementById('folioInput').value.trim();
         const container = document.getElementById('resultadoContainer');
+        const btn = document.getElementById('btnConsultar');
         
         if (!folio) {
-            alert("Por favor ingrese o escanee un número de folio.");
+            alert("Por favor ingrese un número de folio válido.");
             return;
         }
 
+        // Estado de carga con spinner
         container.style.display = "block";
         container.className = "result";
-        container.innerHTML = "<p style='text-align:center; font-weight:bold; color:#555;'>Consultando base de datos oficial...</p>";
+        container.innerHTML = `<div style="text-align:center; padding: 20px;"><div class="loader-spinner" style="border-top-color:var(--primary);"></div><p style="margin-top:10px; font-size:12px; color:#64748b; font-weight:700;">Consultando padrón oficial...</p></div>`;
+        btn.disabled = true;
 
         try {
             const response = await fetch(`${WEB_APP_URL}?folio=${encodeURIComponent(folio)}`);
@@ -308,50 +356,54 @@
 
             if (data.status === "success") {
                 if (data.vigente) {
-                    container.className = "result vigente";
                     container.innerHTML = `
-                        <div class="badge badge-vigente">✔ PERMISO VIGENTE Y VÁLIDO (30 DÍAS)</div>
+                        <div class="status-badge status-vigente">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                            Permiso Vigente (Válido 30 Días)
+                        </div>
                         <div class="details-grid">
-                            <div class="detail-item"><span>Folio Oficial</span><strong>${data.folio}</strong></div>
-                            <div class="detail-item"><span>Conductor / Propietario</span><strong>${data.nombre}</strong></div>
-                            <div class="detail-item"><span>Marca</span><strong>${data.marca}</strong></div>
-                            <div class="detail-item"><span>Línea / Submarca</span><strong>${data.linea}</strong></div>
-                            <div class="detail-item"><span>Modelo (Año)</span><strong>${data.modelo}</strong></div>
-                            <div class="detail-item"><span>Color</span><strong>${data.color}</strong></div>
-                            <div class="detail-item"><span>No. de Motor</span><strong>${data.noMotor}</strong></div>
-                            <div class="detail-item"><span>No. de Serie (NIV)</span><strong>${data.noSerie}</strong></div>
-                            <div class="detail-item"><span>Fecha de Expedición</span><strong>${data.expedicion}</strong></div>
-                            <div class="detail-item" style="background: #E8F5E9;"><span>Fecha de Vencimiento</span><strong style="color: #2E7D32;">${data.vencimiento}</strong></div>
+                            <div class="detail-card"><label>Folio Oficial</label><span>${data.folio}</span></div>
+                            <div class="detail-card"><label>Conductor / Titular</label><span>${data.nombre}</span></div>
+                            <div class="detail-card"><label>Marca</label><span>${data.marca}</span></div>
+                            <div class="detail-card"><label>Línea / Submarca</label><span>${data.linea}</span></div>
+                            <div class="detail-card"><label>Modelo (Año)</label><span>${data.modelo}</span></div>
+                            <div class="detail-card"><label>Color</label><span>${data.color}</span></div>
+                            <div class="detail-card"><label>Número de Motor</label><span>${data.noMotor}</span></div>
+                            <div class="detail-card"><label>Número de Serie</label><span>${data.noSerie}</span></div>
+                            <div class="detail-card"><label>Fecha de Expedición</label><span>${data.expedicion}</span></div>
+                            <div class="detail-card" style="background: #f0fdf4;"><label>Fecha de Vencimiento</label><span style="color:var(--success);">${data.vencimiento}</span></div>
                         </div>
                     `;
                 } else {
-                    container.className = "result expirado";
                     container.innerHTML = `
-                        <div class="badge badge-expirado">✖ PERMISO EXPIRADO / CADUCADO</div>
-                        <p style="text-align: center; color: #C62828; font-weight: bold; font-size: 11px; margin: 5px 0 10px 0;">Este documento ha superado el periodo legal de vigencia de 30 días y carece de validez oficial.</p>
+                        <div class="status-badge status-expirado">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                            Permiso Expirado / Caducado
+                        </div>
+                        <p style="text-align:center; color:var(--danger); font-size:11px; font-weight:700; margin:0 0 12px 0;">Este documento ha superado el periodo legal de 30 días y carece de validez.</p>
                         <div class="details-grid">
-                            <div class="detail-item"><span>Folio Oficial</span><strong>${data.folio}</strong></div>
-                            <div class="detail-item"><span>Propietario Registrado</span><strong>${data.nombre}</strong></div>
-                            <div class="detail-item"><span>Vehículo</span><strong>${data.marca} ${data.linea} (${data.modelo})</strong></div>
-                            <div class="detail-item"><span>Color</span><strong>${data.color}</strong></div>
-                            <div class="detail-item"><span>Expedición</span><strong>${data.expedicion}</strong></div>
-                            <div class="detail-item" style="background: #FFEBEE;"><span>Vencimiento</span><strong style="color: #C62828;">${data.vencimiento} (VENCIDO)</strong></div>
+                            <div class="detail-card"><label>Folio Oficial</label><span>${data.folio}</span></div>
+                            <div class="detail-card"><label>Titular Registrado</label><span>${data.nombre}</span></div>
+                            <div class="detail-card"><label>Vehículo</label><span>${data.marca} ${data.linea} (${data.modelo})</span></div>
+                            <div class="detail-card"><label>Color</label><span>${data.color}</span></div>
+                            <div class="detail-card"><label>Expedición</label><span>${data.expedicion}</span></div>
+                            <div class="detail-card" style="background:#fef2f2;"><label>Vencimiento</label><span style="color:var(--danger);">${data.vencimiento} (VENCIDO)</span></div>
                         </div>
                     `;
                 }
             } else {
-                container.className = "result expirado";
                 container.innerHTML = `
-                    <div class="badge badge-expirado">⚠ FOLIO NO ENCONTRADO</div>
-                    <p style="text-align: center; font-size: 12px; color: #555;">El folio ingresado no se encuentra registrado en el padrón oficial del sistema.</p>
+                    <div class="status-badge status-expirado">Folio No Encontrado</div>
+                    <p style="text-align:center; font-size:12px; color:#64748b; margin:5px 0;">El número ingresado no coincide con ningún registro activo en la base de datos oficial.</p>
                 `;
             }
         } catch (error) {
-            container.className = "result expirado";
             container.innerHTML = `
-                <div class="badge badge-expirado">ERROR DE CONEXIÓN</div>
-                <p style="text-align: center; font-size: 12px;">No se pudo establecer comunicación con el servidor de validación oficial.</p>
+                <div class="status-badge status-expirado">Error de Conexión</div>
+                <p style="text-align:center; font-size:12px; color:#64748b;">No se pudo conectar con el servidor central de validación.</p>
             `;
+        } finally {
+            btn.disabled = false;
         }
     }
 </script>

@@ -2,410 +2,219 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Plataforma Digital de Validación - Permiso Provisional</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma Integral | Más Información</title>
+    <!-- Tailwind CSS para un diseño robusto, moderno y responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root {
-            --primary: #7A1C29;
-            --primary-dark: #5C131D;
-            --success: #1E824C;
-            --danger: #D63031;
-            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        /* Animación suave para la barra de carga */
+        @keyframes progress {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
         }
-
-        * { box-sizing: border-box; }
-
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
-            background: var(--bg-gradient); 
-            margin: 0; 
-            padding: 20px; 
-            color: #2c3e50;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .container { 
-            width: 100%;
-            max-width: 580px; 
-            background: #ffffff; 
-            padding: 30px; 
-            border-radius: 16px; 
-            box-shadow: var(--card-shadow); 
-            position: relative;
-            overflow: hidden;
-            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            border-top: 6px solid var(--primary);
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Marca de agua de fondo elegante */
-        .container::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: radial-gradient(var(--primary) 0.75px, transparent 0.75px);
-            background-size: 16px 16px;
-            opacity: 0.03;
-            pointer-events: none;
-        }
-
-        .header-institucional {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 2px solid #eaeaea;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-        }
-
-        .logo-badge {
-            width: 48px;
-            height: 48px;
-            background: rgba(122, 28, 41, 0.08);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-        }
-
-        .header-titles {
-            text-align: center;
-            flex-grow: 1;
-            padding: 0 10px;
-        }
-
-        .header-titles h4 {
-            margin: 0;
-            font-size: 10px;
-            letter-spacing: 1px;
-            color: #7f8c8d;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .header-titles h2 {
-            margin: 4px 0 0 0;
-            font-size: 13px;
-            color: #2c3e50;
-            font-weight: 800;
-        }
-
-        .document-title-box {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .document-title-box h1 {
-            color: var(--primary);
-            font-size: 17px;
-            font-weight: 900;
-            margin: 0 0 4px 0;
-            letter-spacing: 0.5px;
-        }
-
-        .document-title-box span {
-            color: #d35400;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            background: rgba(211, 84, 0, 0.08);
-            padding: 4px 10px;
-            border-radius: 20px;
-            display: inline-block;
-        }
-
-        /* Buscador Avanzado */
-        .search-card {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            padding: 18px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-        }
-
-        .search-card label {
-            display: block;
-            font-size: 11px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .input-row {
-            display: flex;
-            gap: 10px;
-        }
-
-        input { 
-            flex: 1; 
-            padding: 12px 15px; 
-            box-sizing: border-box; 
-            text-transform: uppercase; 
-            border: 2px solid #cbd5e1; 
-            border-radius: 8px; 
-            font-size: 15px; 
-            font-weight: 700;
-            color: #1e293b;
-            transition: all 0.2s ease;
-            background: #fff;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(122, 28, 41, 0.1);
-        }
-        
-        button { 
-            background-color: var(--primary); 
-            color: white; 
-            border: none; 
-            padding: 0 22px; 
-            cursor: pointer; 
-            font-size: 13px; 
-            border-radius: 8px; 
-            font-weight: 700; 
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: background 0.2s, transform 0.1s;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        button:hover { background-color: var(--primary-dark); }
-        button:active { transform: scale(0.98); }
-
-        /* Resultados Dinámicos con Animación */
-        .result { 
-            margin-top: 20px; 
-            padding: 20px; 
-            border-radius: 12px; 
-            display: none; 
-            animation: fadeIn 0.4s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.97); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .status-badge {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 10px;
-            border-radius: 8px;
-            font-weight: 800;
-            font-size: 13px;
-            margin-bottom: 16px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .status-vigente { background: #dcfce7; color: var(--success); border: 1px solid #86efac; }
-        .status-expirado { background: #fee2e2; color: var(--danger); border: 1px solid #fca5a5; }
-
-        .details-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        .detail-card {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            padding: 10px 12px;
-            border-radius: 8px;
-        }
-
-        .detail-card.full {
-            grid-column: span 2;
-        }
-
-        .detail-card label {
-            display: block;
-            font-size: 9px;
-            color: #64748b;
-            text-transform: uppercase;
-            font-weight: 700;
-            margin-bottom: 3px;
-            letter-spacing: 0.5px;
-        }
-
-        .detail-card span {
-            font-size: 13px;
-            font-weight: 700;
-            color: #1e293b;
-            word-break: break-word;
-        }
-
-        .legal-footer {
-            margin-top: 20px;
-            font-size: 10px;
-            text-align: center;
-            color: #94a3b8;
-            border-top: 1px solid #f1f5f9;
-            padding-top: 12px;
-            line-height: 1.4;
-        }
-
-        /* Spinner de carga estilizado */
-        .loader-spinner {
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            border-top-color: #fff;
-            animation: spin 0.8s linear infinite;
-            display: inline-block;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .animate-progress {
+            animation: progress 2s ease-in-out infinite;
         }
     </style>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased flex flex-col min-h-screen">
 
-<div class="container">
-    <!-- Encabezado Institucional con Iconos Vectoriales -->
-    <div class="header-institucional">
-        <div class="logo-badge" title="Estado de Guerrero">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        </div>
-        <div class="header-titles">
-            <h4>Gobierno del Estado de Guerrero</h4>
-            <h2>H. Ayuntamiento Constitucional de Huitzuco</h2>
-        </div>
-        <div class="logo-badge" title="Tránsito Municipal">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        </div>
+    <!-- Barra de Carga Superior (Indicador de consulta al Sheet) -->
+    <div id="top-loader" class="fixed top-0 left-0 w-full h-1.5 bg-blue-100 z-50 hidden">
+        <div class="h-full bg-blue-600 animate-progress"></div>
     </div>
 
-    <div class="document-title-box">
-        <h1>VALIDACIÓN DE PERMISO PROVISIONAL</h1>
-        <span>Control Vehicular Oficial</span>
-    </div>
-
-    <!-- Buscador -->
-    <div class="search-card">
-        <label for="folioInput">Ingrese o escanee el número de Folio:</label>
-        <div class="input-row">
-            <input type="text" id="folioInput" placeholder="EJ. HTZ-BB2613">
-            <button id="btnConsultar" onclick="consultarPermiso()">
-                <span>Buscar</span>
-            </button>
+    <!-- Header / Barra de Navegación -->
+    <header class="bg-white shadow-md sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo Visible -->
+            <div class="flex items-center space-x-3">
+                <!-- Reemplaza el src con la URL definitiva o local de tu logo -->
+                <img id="site-logo" src="https://via.placeholder.com/150x50?text=LOGO" alt="Logo Principal" class="h-12 w-auto object-contain">
+                <span class="text-xl font-bold tracking-tight text-gray-900">Portal Corporativo</span>
+            </div>
+            <nav class="hidden md:flex space-x-8 text-sm font-medium text-gray-600">
+                <a href="#inicio" class="hover:text-blue-600 transition">Inicio</a>
+                <a href="#servicios" class="hover:text-blue-600 transition">Servicios</a>
+                <a href="#ubicaciones" class="hover:text-blue-600 transition">Direcciones</a>
+                <a href="#datos" class="hover:text-blue-600 transition">Consultas (Sheet)</a>
+            </nav>
         </div>
-    </div>
+    </header>
 
-    <!-- Resultado Dinámico -->
-    <div id="resultadoContainer" class="result"></div>
-
-    <div class="legal-footer">
-        Dirección de Tránsito y Vialidad Municipal · Huitzuco de los Figueroa, Gro.<br>
-        Sistema de Autenticación Criptográfica y Padrón Electrónico en Línea.
-    </div>
-</div>
-
-<script>
-    // ⚠️ TU URL DE GOOGLE APPS SCRIPT
-    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxnCEqO-WMSIE1wnk2hL_HXiF2itDy3lNWJoWMd4cV1F-C-nzQ2Pca9FLqq6kJ6TuM5kw/exec";
-
-    window.onload = function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const folioParam = urlParams.get('folio');
-        if (folioParam) {
-            document.getElementById('folioInput').value = folioParam;
-            consultarPermiso();
-        }
-    };
-
-    async function consultarPermiso() {
-        const folio = document.getElementById('folioInput').value.trim();
-        const container = document.getElementById('resultadoContainer');
-        const btn = document.getElementById('btnConsultar');
+    <!-- Contenido Principal Robusto -->
+    <main class="flex-grow">
         
-        if (!folio) {
-            alert("Por favor ingrese un número de folio válido.");
-            return;
-        }
+        <!-- Hero Section -->
+        <section id="inicio" class="bg-gradient-to-r from-blue-900 to-indigo-800 text-white py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight mb-6">Soluciones Inteligentes y Conectadas</h1>
+                <p class="text-lg sm:text-xl text-blue-100 max-w-3xl mx-auto mb-8">
+                    Gestionamos información en tiempo real conectada directamente con bases de datos seguras para ofrecerte la mejor experiencia y control total de tus operaciones.
+                </p>
+                <a href="#datos" class="inline-block bg-white text-blue-900 font-semibold px-8 py-3 rounded-lg shadow-lg hover:bg-blue-50 transition">
+                    Consultar Datos Ahora
+                </a>
+            </div>
+        </section>
 
-        // Estado de carga con spinner
-        container.style.display = "block";
-        container.className = "result";
-        container.innerHTML = `<div style="text-align:center; padding: 20px;"><div class="loader-spinner" style="border-top-color:var(--primary);"></div><p style="margin-top:10px; font-size:12px; color:#64748b; font-weight:700;">Consultando padrón oficial...</p></div>`;
-        btn.disabled = true;
+        <!-- Información y Servicios -->
+        <section id="servicios" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900">Nuestros Servicios Principales</h2>
+                <p class="text-gray-600 mt-2">Conoce todo lo que podemos ofrecer para impulsar tu proyecto.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center font-bold text-xl mb-4">01</div>
+                    <h3 class="text-xl font-semibold mb-2">Automatización de Datos</h3>
+                    <p class="text-gray-600 text-sm">Sincronización fluida con Hojas de Cálculo de Google para mantener reportes actualizados al instante.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                    <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center font-bold text-xl mb-4">02</div>
+                    <h3 class="text-xl font-semibold mb-2">Soporte y Monitoreo</h3>
+                    <p class="text-gray-600 text-sm">Seguimiento constante de sistemas y herramientas embebidas con altos estándares de seguridad.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                    <div class="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center font-bold text-xl mb-4">03</div>
+                    <h3 class="text-xl font-semibold mb-2">Desarrollo Web a Medida</h3>
+                    <p class="text-gray-600 text-sm">Interfaces responsivas y robustas adaptadas a las necesidades específicas de cada cliente.</p>
+                </div>
+            </div>
+        </section>
 
-        try {
-            const response = await fetch(`${WEB_APP_URL}?folio=${encodeURIComponent(folio)}`);
-            const data = await response.json();
+        <!-- Sección de Direcciones y Ubicaciones -->
+        <section id="ubicaciones" class="bg-gray-100 py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-900">Direcciones y Sucursales</h2>
+                    <p class="text-gray-600 mt-2">Visítanos o ponte en contacto en cualquiera de nuestras oficinas.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-xl shadow">
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">Oficina Central Morelia</h3>
+                        <p class="text-gray-600 text-sm mb-4">Av. Acueducto #123, Centro, Morelia, Michoacán, México.</p>
+                        <p class="text-xs text-gray-500 font-semibold">Horario: Lunes a Viernes de 9:00 AM - 6:00 PM</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow">
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">Centro de Desarrollo Tecnológico</h3>
+                        <p class="text-gray-600 text-sm mb-4">Boulevard Latinoamérica #456, Col. Industrial, Morelia, Michoacán.</p>
+                        <p class="text-xs text-gray-500 font-semibold">Horario: Lunes a Viernes de 10:00 AM - 5:00 PM</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            if (data.status === "success") {
-                if (data.vigente) {
-                    container.innerHTML = `
-                        <div class="status-badge status-vigente">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                            Permiso Vigente (Válido 30 Días)
-                        </div>
-                        <div class="details-grid">
-                            <div class="detail-card"><label>Folio Oficial</label><span>${data.folio}</span></div>
-                            <div class="detail-card"><label>Conductor / Titular</label><span>${data.nombre}</span></div>
-                            <div class="detail-card"><label>Marca</label><span>${data.marca}</span></div>
-                            <div class="detail-card"><label>Línea / Submarca</label><span>${data.linea}</span></div>
-                            <div class="detail-card"><label>Modelo (Año)</label><span>${data.modelo}</span></div>
-                            <div class="detail-card"><label>Color</label><span>${data.color}</span></div>
-                            <div class="detail-card"><label>Número de Motor</label><span>${data.noMotor}</span></div>
-                            <div class="detail-card"><label>Número de Serie</label><span>${data.noSerie}</span></div>
-                            <div class="detail-card"><label>Fecha de Expedición</label><span>${data.expedicion}</span></div>
-                            <div class="detail-card" style="background: #f0fdf4;"><label>Fecha de Vencimiento</label><span style="color:var(--success);">${data.vencimiento}</span></div>
-                        </div>
-                    `;
+        <!-- Sección Dinámica de Consulta al Sheet -->
+        <section id="datos" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-900">Consulta de Registros (Google Sheet)</h2>
+                        <p class="text-gray-600 text-sm">Los datos se sincronizan en tiempo real mediante Apps Script.</p>
+                    </div>
+                    <button onclick="cargarDatosSheet()" class="mt-4 md:mt-0 bg-blue-600 hover:bg-blue-700 text-white font-medium px-5 py-2.5 rounded-lg transition shadow">
+                        Actualizar Datos
+                    </button>
+                </div>
+
+                <!-- Contenedor de Estado / Carga -->
+                <div id="status-container" class="py-8 text-center text-gray-500 hidden">
+                    <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-blue-600 border-t-transparent mb-2"></div>
+                    <p class="text-sm">Consultando información del servidor, por favor espere...</p>
+                </div>
+
+                <!-- Tabla de Resultados -->
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID / Columna 1</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Descripción</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sheet-data-body" class="bg-white divide-y divide-gray-200">
+                            <tr>
+                                <td colspan="3" class="px-6 py-4 text-center text-sm text-gray-500">
+                                    Haz clic en "Actualizar Datos" para realizar la consulta.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+            <p>&copy; 2026 Todos los derechos reservados.</p>
+            <div class="flex space-x-6 mt-4 md:mt-0">
+                <a href="#" class="hover:text-white transition">Privacidad</a>
+                <a href="#" class="hover:text-white transition">Términos</a>
+                <a href="#" class="hover:text-white transition">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script de Control de Carga y Conexión -->
+    <script>
+        const WEB_APP_URL = "TU_URL_DE_GOOGLE_APPS_SCRIPT_AQUI"; // Reemplaza con tu URL real
+
+        async function cargarDatosSheet() {
+            const loader = document.getElementById('top-loader');
+            const statusContainer = document.getElementById('status-container');
+            const tbody = document.getElementById('sheet-data-body');
+
+            // Mostrar barras y indicadores de carga
+            loader.classList.remove('hidden');
+            statusContainer.classList.remove('hidden');
+            tbody.innerHTML = '';
+
+            try {
+                // Implementando un timeout de seguridad (10 segundos) para evitar bloqueos eternos
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+                const response = await fetch(WEB_APP_URL, { signal: controller.signal });
+                clearTimeout(timeoutId);
+
+                if (!response.ok) throw new Error('Error en la respuesta del servidor');
+
+                const data = await response.json();
+
+                // Ocultar indicadores
+                loader.classList.add('hidden');
+                statusContainer.classList.add('hidden');
+
+                if (data && data.length > 0) {
+                    data.forEach(row => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${row[0] || ''}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${row[1] || ''}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Activo</span>
+                            </td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
                 } else {
-                    container.innerHTML = `
-                        <div class="status-badge status-expirado">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                            Permiso Expirado / Caducado
-                        </div>
-                        <p style="text-align:center; color:var(--danger); font-size:11px; font-weight:700; margin:0 0 12px 0;">Este documento ha superado el periodo legal de 30 días y carece de validez.</p>
-                        <div class="details-grid">
-                            <div class="detail-card"><label>Folio Oficial</label><span>${data.folio}</span></div>
-                            <div class="detail-card"><label>Titular Registrado</label><span>${data.nombre}</span></div>
-                            <div class="detail-card"><label>Vehículo</label><span>${data.marca} ${data.linea} (${data.modelo})</span></div>
-                            <div class="detail-card"><label>Color</label><span>${data.color}</span></div>
-                            <div class="detail-card"><label>Expedición</label><span>${data.expedicion}</span></div>
-                            <div class="detail-card" style="background:#fef2f2;"><label>Vencimiento</label><span style="color:var(--danger);">${data.vencimiento} (VENCIDO)</span></div>
-                        </div>
-                    `;
+                    tbody.innerHTML = `<tr><td colspan="3" class="px-6 py-4 text-center text-sm text-gray-500">No se encontraron registros en el Sheet.</td></tr>`;
                 }
-            } else {
-                container.innerHTML = `
-                    <div class="status-badge status-expirado">Folio No Encontrado</div>
-                    <p style="text-align:center; font-size:12px; color:#64748b; margin:5px 0;">El número ingresado no coincide con ningún registro activo en la base de datos oficial.</p>
-                `;
+
+            } catch (error) {
+                loader.classList.add('hidden');
+                statusContainer.classList.add('hidden');
+                
+                console.error("Error al consultar:", error);
+                tbody.innerHTML = `<tr><td colspan="3" class="px-6 py-4 text-center text-sm text-red-500">Error al conectar con la base de datos o tiempo de espera agotado. Verifica tu URL de Apps Script.</td></tr>`;
             }
-        } catch (error) {
-            container.innerHTML = `
-                <div class="status-badge status-expirado">Error de Conexión</div>
-                <p style="text-align:center; font-size:12px; color:#64748b;">No se pudo conectar con el servidor central de validación.</p>
-            `;
-        } finally {
-            btn.disabled = false;
         }
-    }
-</script>
+    </script>
 </body>
 </html>
